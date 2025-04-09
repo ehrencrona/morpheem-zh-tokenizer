@@ -1,10 +1,10 @@
-FROM python:3.10-slim
+FROM alpine:3.9
+
+RUN apk add --update python3
 
 WORKDIR /app
 
 COPY requirements.txt .
-
-RUN pip3 install Cmake
 
 RUN pip3 install --no-cache-dir -r requirements.txt
 
