@@ -6,9 +6,11 @@ WORKDIR /app
 
 COPY requirements.txt .
 
+# Create virtual environment
 RUN python3 -m venv venv
-RUN . venv/bin/activate
-RUN pip3 install --no-cache-dir -r requirements.txt
+
+# This is the key change - properly activate the venv and use its pip
+RUN . venv/bin/activate && pip3 install --no-cache-dir -r requirements.txt
 
 COPY . .
 
@@ -18,5 +20,5 @@ ENV PORT=8000
 # EXPOSE is just documentation
 EXPOSE $PORT
 
-# Use the PORT environment variable
-CMD gunicorn --bind 0.0.0.0:$PORT app:app
+# Modify CMD to use the virtual environment's Python/Gunicorn
+CMD . venv/bin/activate && venv/bin/gunicorn --bind 0.0.0.0:$PORT app:app
