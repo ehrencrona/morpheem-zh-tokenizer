@@ -1,4 +1,4 @@
+wheel==0.46.1
 flask==3.1.0
 jieba==0.42.1
 gunicorn==23.0.0
-wheel==0.46.1
