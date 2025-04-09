@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: chinese-segmentation-service
+    runtime: docker
+    branch: main
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: 8000
